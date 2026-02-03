@@ -192,6 +192,20 @@ nav.scrolled {
 }
 .nav-cta::after { display: none !important; }
 
+/* GitHub nav link icon */
+.nav-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.nav-github svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  transition: fill 0.3s;
+}
+.nav-github:hover svg { fill: var(--text-primary); }
+
 /* Mobile nav */
 .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
 .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--text-secondary); margin: 5px 0; transition: all 0.3s; }
@@ -636,6 +650,42 @@ section {
   color: var(--text-muted);
 }
 
+/* GitHub repo link inside project cards */
+.project-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.2rem;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.02);
+  transition: all 0.3s var(--ease-out-expo);
+}
+.project-github svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+.project-github:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-bright);
+  background: var(--accent-glow);
+  transform: translateX(4px);
+}
+.project-github .arrow {
+  transition: transform 0.3s var(--ease-out-expo);
+}
+.project-github:hover .arrow {
+  transform: translateX(3px);
+}
+
 /* Project visual — styled code block */
 .project-visual {
   background: rgba(0,0,0,0.3);
@@ -787,6 +837,11 @@ section {
   font-size: 1.3rem;
   flex-shrink: 0;
 }
+.contact-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--text-primary);
+}
 .contact-card .contact-label {
   font-family: var(--font-mono);
   font-size: 0.65rem;
@@ -858,6 +913,7 @@ footer {
     <a href="#toolkit">AI Toolkit</a>
     <a href="#projects">Projects</a>
     <a href="#experience">Experience</a>
+    <a href="https://github.com/pranavgandhirecruiting-star" target="_blank" class="nav-github"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> GitHub</a>
     <a href="#contact" class="nav-cta">Get in Touch</a>
   </div>
   <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
@@ -1052,6 +1108,10 @@ footer {
           <span>Excel Export</span>
           <span>Vibe Coded</span>
         </div>
+        <a href="https://github.com/pranavgandhirecruiting-star/OpenAlexChromeExtension" target="_blank" class="project-github">
+          <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          View on GitHub <span class="arrow">→</span>
+        </a>
       </div>
       <div class="project-visual">
         <span class="comment">// OpenAlex PhD Pipeline — output</span><br><br>
@@ -1082,6 +1142,10 @@ footer {
           <span>Citation Graphs</span>
           <span>Node.js</span>
         </div>
+        <a href="https://github.com/pranavgandhirecruiting-star/semantic-scholar-mcp" target="_blank" class="project-github">
+          <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          View on GitHub <span class="arrow">→</span>
+        </a>
       </div>
       <div class="project-visual">
         <span class="comment">// MCP Server — live in Claude</span><br><br>
@@ -1097,7 +1161,41 @@ footer {
       </div>
     </div>
 
-    <!-- Project 3: OpenClaw Recruiting Automation -->
+    <!-- Project 3: OpenAlex MCP Server -->
+    <div class="project-card reveal">
+      <div class="project-info">
+        <div class="project-tag">MCP Server</div>
+        <h3>OpenAlex MCP Server</h3>
+        <p>
+          A Model Context Protocol server that connects LLMs directly to the OpenAlex academic database with GitHub integration. Search works, authors, and institutions, build citation graphs, and evaluate researchers' engineering signal — all from within your AI conversation. The MCP counterpart to the Chrome extension pipeline.
+        </p>
+        <div class="project-tech">
+          <span>MCP Protocol</span>
+          <span>OpenAlex API</span>
+          <span>GitHub API</span>
+          <span>Python</span>
+          <span>Docker</span>
+        </div>
+        <a href="https://github.com/pranavgandhirecruiting-star/openalex-mcp-server" target="_blank" class="project-github">
+          <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          View on GitHub <span class="arrow">→</span>
+        </a>
+      </div>
+      <div class="project-visual">
+        <span class="comment">// OpenAlex MCP — live in any LLM</span><br><br>
+        <span class="kw">User</span>: Find researchers publishing on<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CUDA kernel optimization<br><br>
+        <span class="kw">Claude</span> → <span class="fn">mcp.openalex</span><br>
+        &nbsp;&nbsp;.<span class="fn">search_works</span>(<span class="str">"CUDA kernels"</span>)<br>
+        &nbsp;&nbsp;.<span class="fn">get_author_details</span>()<br>
+        &nbsp;&nbsp;.<span class="fn">github_activity_check</span>()<br>
+        &nbsp;&nbsp;.<span class="fn">rank_by_engineering_signal</span>()<br><br>
+        <span class="fn">→</span> <span class="num">15</span> researchers with GitHub profiles<br>
+        <span class="fn">→</span> <span class="num">6</span> with active open-source contributions
+      </div>
+    </div>
+
+    <!-- Project 4: OpenClaw Recruiting Automation -->
     <div class="project-card reveal">
       <div class="project-info">
         <div class="project-tag">Full Process Automation</div>
@@ -1237,6 +1335,13 @@ footer {
       <div>
         <div class="contact-label">LinkedIn</div>
         <div class="contact-value">linkedin.com/in/pranavgandhifacebook</div>
+      </div>
+    </a>
+    <a href="https://github.com/pranavgandhirecruiting-star" target="_blank" class="contact-card">
+      <div class="contact-icon"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></div>
+      <div>
+        <div class="contact-label">GitHub</div>
+        <div class="contact-value">pranavgandhirecruiting-star</div>
       </div>
     </a>
     <a href="tel:919-522-3885" class="contact-card">
