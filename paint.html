@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PAINT — Predictive AI-Native Talent Intelligence | Pranav Gandhi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg-primary:#08090d;--bg-secondary:#0e1017;--bg-card:#12141c;--bg-card-hover:#181b26;--border:#1e2130;--border-accent:#2a3050;--text-primary:#e8eaf0;--text-secondary:#8b90a5;--text-muted:#555a72;--accent:#6c5ce7;--accent-bright:#a78bfa;--accent-glow:rgba(108,92,231,0.15);--cyan:#00d2ff;--cyan-glow:rgba(0,210,255,0.1);--green:#10b981;--orange:#f59e0b;--pink:#ec4899;--font-display:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'JetBrains Mono',monospace;--ease-out-expo:cubic-bezier(0.16,1,0.3,1)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg-primary);color:var(--text-primary);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.7}
+::selection{background:var(--accent);color:#fff}
+body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px}
+.ambient-glow{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.ambient-glow .orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:0.07}
+.ambient-glow .orb:nth-child(1){width:600px;height:600px;background:var(--accent);top:-10%;left:-5%;animation:float1 25s ease-in-out infinite}
+.ambient-glow .orb:nth-child(2){width:500px;height:500px;background:var(--cyan);bottom:-10%;right:-5%;animation:float2 30s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(80px,60px) scale(1.1)}66%{transform:translate(-40px,100px) scale(0.9)}}
+@keyframes float2{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-60px,-80px) scale(1.15)}66%{transform:translate(50px,-40px) scale(0.95)}}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(8,9,13,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-display);font-weight:800;font-size:1.2rem;color:var(--text-primary);text-decoration:none}
+.nav-logo span{color:var(--accent-bright)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;transition:color 0.3s}
+.nav-links a:hover{color:var(--text-primary)}
+.container{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:8rem 2rem 4rem}
+.hero-section{text-align:center;margin-bottom:5rem}
+.back-link{font-family:var(--font-mono);font-size:0.75rem;color:var(--accent-bright);text-decoration:none;margin-bottom:2rem;display:block;text-align:left}
+.back-link:hover{text-decoration:underline}
+.hero-badge{display:inline-block;font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--cyan);padding:0.4rem 1rem;border:1px solid var(--cyan);border-radius:100px;background:rgba(0,210,255,0.08);margin-bottom:1.5rem}
+h1{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:1rem;background:linear-gradient(135deg,var(--text-primary) 0%,var(--accent-bright) 50%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-tagline{font-size:1.3rem;color:var(--cyan);font-weight:500;margin-bottom:1rem}
+.hero-desc{font-size:1.1rem;color:var(--text-secondary);max-width:700px;margin:0 auto 2rem}
+.hero-stats{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;margin-bottom:2rem}
+.hero-stat{text-align:center}
+.hero-stat .num{font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--accent-bright)}
+.hero-stat .lbl{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;font-family:var(--font-body);font-weight:500;font-size:0.95rem;border-radius:8px;cursor:pointer;text-decoration:none;transition:all 0.3s var(--ease-out-expo)}
+.btn-primary{background:var(--accent);color:#fff;border:none}
+.btn-primary:hover{background:var(--accent-bright);transform:translateY(-2px);box-shadow:0 8px 30px var(--accent-glow)}
+.btn-outline{background:transparent;color:var(--text-primary);border:1px solid var(--border-accent)}
+.btn-outline:hover{border-color:var(--cyan);background:var(--cyan-glow);color:var(--cyan)}
+.section{margin-bottom:5rem}
+.section-label{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:1rem}
+h2{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;letter-spacing:-0.02em;margin-bottom:1.5rem}
+h3{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-bottom:0.8rem;color:var(--text-primary)}
+p{color:var(--text-secondary);margin-bottom:1.2rem}
+.callout{background:linear-gradient(135deg,rgba(108,92,231,0.1) 0%,rgba(0,210,255,0.05) 100%);border:1px solid var(--border-accent);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:1.5rem 2rem;margin:2rem 0}
+.callout p{margin-bottom:0}
+.callout strong{color:var(--accent-bright)}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin:2rem 0}
+.feature-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:all 0.3s var(--ease-out-expo)}
+.feature-card:hover{border-color:var(--border-accent);transform:translateY(-3px);box-shadow:0 10px 40px rgba(0,0,0,0.2)}
+.feature-icon{font-size:1.5rem;margin-bottom:0.8rem}
+.feature-card h4{font-family:var(--font-display);font-size:1rem;font-weight:600;margin-bottom:0.5rem}
+.feature-card p{font-size:0.9rem;color:var(--text-secondary);margin-bottom:0}
+.code-block{background:rgba(0,0,0,0.4);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin:2rem 0;overflow-x:auto;font-family:var(--font-mono);font-size:0.8rem;line-height:1.8;color:var(--text-secondary)}
+.code-block .kw{color:var(--accent-bright)}
+.code-block .fn{color:var(--cyan)}
+.code-block .str{color:var(--green)}
+.code-block .comment{color:var(--text-muted)}
+.code-block .num{color:var(--orange)}
+.timeline{position:relative;padding-left:2rem;margin:2rem 0}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--accent),var(--cyan))}
+.timeline-item{position:relative;padding-bottom:2rem;padding-left:1.5rem}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-item::before{content:'';position:absolute;left:-2rem;top:0.4rem;width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--bg-primary);box-shadow:0 0 0 4px var(--accent-glow)}
+.timeline-item h4{font-family:var(--font-display);font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:0.3rem}
+.timeline-item .meta{font-family:var(--font-mono);font-size:0.7rem;color:var(--accent-bright);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem}
+.timeline-item p{font-size:0.9rem;margin-bottom:0}
+.roadmap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:2rem 0}
+@media(max-width:768px){.roadmap-grid{grid-template-columns:1fr}}
+.roadmap-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;position:relative}
+.roadmap-card.current{border-color:var(--accent)}
+.roadmap-card.current::before{content:'CURRENT';position:absolute;top:-10px;left:1rem;font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;color:var(--accent-bright);background:var(--bg-primary);padding:0 0.5rem}
+.roadmap-card h4{font-family:var(--font-display);font-size:1rem;font-weight:600;margin-bottom:0.8rem}
+.roadmap-card ul{list-style:none;padding:0}
+.roadmap-card li{position:relative;padding-left:1rem;font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.4rem}
+.roadmap-card li::before{content:'•';position:absolute;left:0;color:var(--accent-bright)}
+.try-section{background:linear-gradient(135deg,rgba(108,92,231,0.15) 0%,rgba(0,210,255,0.08) 100%);border:2px solid var(--accent);border-radius:20px;padding:3rem;text-align:center;margin:4rem 0}
+.try-section h2{margin-bottom:1rem}
+.try-section p{max-width:600px;margin:0 auto 2rem}
+.download-instructions{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:2rem;text-align:left;margin-top:2rem}
+.download-instructions h4{margin-bottom:1rem}
+.download-instructions ol{padding-left:1.5rem}
+.download-instructions li{margin-bottom:0.8rem;color:var(--text-secondary)}
+.download-instructions code{background:rgba(0,0,0,0.3);padding:0.2rem 0.5rem;border-radius:4px;font-family:var(--font-mono);font-size:0.85rem;color:var(--cyan)}
+footer{position:relative;z-index:1;text-align:center;padding:3rem 2rem;border-top:1px solid var(--border);font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted)}
+footer a{color:var(--accent-bright);text-decoration:none}
+footer a:hover{text-decoration:underline}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border) 20%,var(--border) 80%,transparent);margin:4rem 0}
+</style>
+</head>
+<body>
+<div class="ambient-glow"><div class="orb"></div><div class="orb"></div></div>
+<nav>
+<a href="index.html" class="nav-logo">PG<span>.</span></a>
+<div class="nav-links">
+<a href="index.html">← Back to Portfolio</a>
+<a href="https://github.com/pranavgandhirecruiting-star/paint-ats-mcp" target="_blank">GitHub</a>
+</div>
+</nav>
+<div class="container">
+<div class="hero-section">
+<a href="index.html" class="back-link">← Back to Portfolio</a>
+<div class="hero-badge">MCP Server • Production-Ready</div>
+<h1>PAINT</h1>
+<div class="hero-tagline">Predictive AI-Native Talent Intelligence</div>
+<p class="hero-desc">A production-grade MCP server that transforms any ATS into an intelligent recruiting co-worker. PAINT doesn't replace your ATS — it makes it think.</p>
+<div class="hero-stats">
+<div class="hero-stat"><div class="num">9</div><div class="lbl">MCP Tools</div></div>
+<div class="hero-stat"><div class="num">40+</div><div class="lbl">ATS Integrations</div></div>
+<div class="hero-stat"><div class="num">250K+</div><div class="lbl">Candidate Scale</div></div>
+<div class="hero-stat"><div class="num">~2,700</div><div class="lbl">Lines of Code</div></div>
+</div>
+<div class="hero-actions">
+<a href="https://github.com/pranavgandhirecruiting-star/paint-ats-mcp" target="_blank" class="btn btn-primary">View on GitHub →</a>
+<a href="#try-it" class="btn btn-outline">Try It Live ↓</a>
+</div>
+</div>
+
+<div class="section">
+<span class="section-label">// The Problem</span>
+<h2>Your ATS is Expensive, Powerful, and Dumb</h2>
+<p>After 10+ years in technical recruiting at Meta, Citrix, and Cisco, I've used every major ATS on the market. They all share the same fundamental problem: <strong>they're databases pretending to be intelligence</strong>.</p>
+<p>Your ATS holds everything — every candidate, every interaction, every note. But when you need to find the right person for a role, you're back to keyword searches, Boolean strings, and manual scrolling through hundreds of profiles hoping something jumps out.</p>
+<div class="callout">
+<p><strong>The insight:</strong> The ATS isn't the problem. The problem is that it can't reason. What if we gave it a brain?</p>
+</div>
+</div>
+
+<div class="section">
+<span class="section-label">// The Solution</span>
+<h2>MCP: A USB Port for AI</h2>
+<p>MCP (Model Context Protocol) is Anthropic's open standard that lets AI models interact with external systems through well-defined tools. Think of it like a USB port — any AI that speaks MCP can plug into any MCP server and use its capabilities.</p>
+<p>PAINT is an MCP server purpose-built for recruiting. It connects to your ATS through Merge.dev's unified API, enriches every record with AI-computed insights, and exposes 9 specialized tools that an AI agent can call to search, match, analyze, and audit your recruiting data in real time.</p>
+<p><strong>The result:</strong> When you talk to Claude (or any MCP-compatible AI), it has direct access to your entire candidate database — not as a dumb search, but as an intelligent partner that can reason over your data, remember what you tell it, and make recommendations grounded in reality.</p>
+</div>
+
+<div class="section">
+<span class="section-label">// Core Innovations</span>
+<h2>What Makes PAINT Different</h2>
+<div class="feature-grid">
+<div class="feature-card">
+<div class="feature-icon">🧠</div>
+<h4>Dual-Context Reasoning (DCR)</h4>
+<p>Loads candidate profile + job order + full interaction history simultaneously, then reasons across all three. Goes far beyond keyword matching to understand career trajectory, compensation dynamics, and conversation nuance.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">📊</div>
+<h4>Context Health Engine</h4>
+<p>Audits your ATS in seconds. Scores data quality across 4 dimensions, calculates the dollar cost of bad data, and generates a prioritized action plan. Show this to any agency owner and they'll say "I need this yesterday."</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">💾</div>
+<h4>Persistent Memory Graph</h4>
+<p>Remembers what you tell it about candidates. "Sarah wants remote" gets recorded with confidence scoring and temporal decay. Next time you search, PAINT already knows her preferences — even months later.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">💰</div>
+<h4>Live Market Intelligence</h4>
+<p>Pulls real-time compensation data from Levels.fyi. Know exactly what Google L5 or Meta E5 pays before you pitch a candidate. No more guessing on comp.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🔐</div>
+<h4>Enterprise Security</h4>
+<p>PII masking on search results, role-based access control, full audit logging, rate limiting. Built for enterprise from day one, not bolted on later.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🔗</div>
+<h4>40+ ATS Integrations</h4>
+<p>Via Merge.dev's unified API. Bullhorn, Greenhouse, Lever, JazzHR, Workday, Ashby — one integration gives you all of them.</p>
+</div>
+</div>
+</div>
+
+<div class="section">
+<span class="section-label">// In Action</span>
+<h2>What It Looks Like</h2>
+<p>Here's a real workflow. You're talking to Claude with PAINT connected:</p>
+<div class="code-block">
+<span class="kw">User</span>: Find me React developers in Austin under $160K<br><br>
+<span class="kw">Claude</span> → <span class="fn">paint.search_candidates</span>(<span class="str">"React"</span>, <span class="str">"Austin"</span>, max: <span class="num">160000</span>)<br>
+&nbsp;&nbsp;→ <span class="num">23</span> candidates found, PII masked<br><br>
+<span class="kw">User</span>: Match them against the ML Infra role<br><br>
+<span class="kw">Claude</span> → <span class="fn">paint.find_matches_for_job</span>(<span class="str">"job_123"</span>)<br>
+&nbsp;&nbsp;→ DCR v2 analysis running...<br>
+&nbsp;&nbsp;→ <span class="num">8</span> strong matches with full reasoning<br>
+&nbsp;&nbsp;→ <span class="num">5</span> adjacent matches (right skills, different role type)<br><br>
+<span class="comment">// For each match, you get:</span><br>
+<span class="comment">// - Overall score (0-100) with breakdown</span><br>
+<span class="comment">// - Career trajectory analysis</span><br>
+<span class="comment">// - Conversation insights from call notes</span><br>
+<span class="comment">// - Outreach strategy specific to this person</span><br>
+<span class="comment">// - Risk factors and concerns</span><br><br>
+<span class="kw">User</span>: What's Google paying for this level?<br><br>
+<span class="kw">Claude</span> → <span class="fn">paint.get_market_comp</span>(<span class="str">"Google"</span>, <span class="str">"Software Engineer"</span>)<br>
+&nbsp;&nbsp;→ L4: <span class="str">$200K–$280K</span> TC<br>
+&nbsp;&nbsp;→ L5: <span class="str">$285K–$350K</span> TC<br>
+&nbsp;&nbsp;→ Data from Levels.fyi (https://levels.fyi)<br><br>
+<span class="kw">User</span>: The top candidate mentioned she only wants remote<br><br>
+<span class="kw">Claude</span> → <span class="fn">paint.record_candidate_signal</span>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"cand_abc"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type: <span class="str">"preference"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value: <span class="str">"wants remote only"</span><br>
+&nbsp;&nbsp;)<br>
+&nbsp;&nbsp;→ Signal recorded, confidence: <span class="num">0.90</span><br>
+&nbsp;&nbsp;→ Half-life: 180 days<br><br>
+<span class="comment">// Next month, when you search again:</span><br>
+<span class="comment">// PAINT remembers this — no re-asking required</span>
+</div>
+</div>
+
+<div class="section">
+<span class="section-label">// The Nine Tools</span>
+<h2>What PAINT Can Do</h2>
+<div class="feature-grid">
+<div class="feature-card">
+<h4>search_candidates</h4>
+<p>Search by skills, location, salary, experience. Results are PII-masked. Supports any combination of filters.</p>
+</div>
+<div class="feature-card">
+<h4>get_candidate</h4>
+<p>Full profile with PAINT enrichments: confidence score, extracted skills, salary expectations, work auth, data issues.</p>
+</div>
+<div class="feature-card">
+<h4>get_candidate_notes</h4>
+<p>Complete interaction history — calls, emails, recruiter observations. This is where the real intelligence lives.</p>
+</div>
+<div class="feature-card">
+<h4>search_jobs</h4>
+<p>Search open job orders by skills, location, employment type. Returns PAINT-enriched data.</p>
+</div>
+<div class="feature-card">
+<h4>get_job</h4>
+<p>Full job details including requirements, comp range, remote policy, hiring timeline.</p>
+</div>
+<div class="feature-card">
+<h4>match_candidate_job</h4>
+<p>The DCR engine. Deep LLM analysis of a candidate-job pair with full reasoning and strategy.</p>
+</div>
+<div class="feature-card">
+<h4>find_matches_for_job</h4>
+<p>Bulk matching. Ranks all active candidates against a job. Finds the best people across your entire database.</p>
+</div>
+<div class="feature-card">
+<h4>get_pipeline</h4>
+<p>Submission and pipeline status. Which candidates are where, how long they've been there, what's stuck.</p>
+</div>
+<div class="feature-card">
+<h4>audit_data_health</h4>
+<p>The Context Health Engine. Grade, dollar cost, action plan. The sales wedge for agencies.</p>
+</div>
+</div>
+</div>
+
+<div class="section">
+<span class="section-label">// The Journey</span>
+<h2>How This Got Built</h2>
+<div class="timeline">
+<div class="timeline-item">
+<h4>The Spark</h4>
+<div class="meta">January 2026</div>
+<p>After 4+ years at Meta watching talented recruiters struggle with the same ATS limitations, I asked: what if we could make the ATS actually think? MCP had just matured enough to make this possible.</p>
+</div>
+<div class="timeline-item">
+<h4>Local Prototype</h4>
+<div class="meta">January 2026</div>
+<p>First working version: local-only, hardcoded data, basic search. Proved the concept worked — Claude could actually talk to recruiting data intelligently.</p>
+</div>
+<div class="timeline-item">
+<h4>DCR v1</h4>
+<div class="meta">January 2026</div>
+<p>Built the Dual-Context Reasoning engine. Deterministic scoring based on skills, experience, comp alignment. Already better than any ATS matching I'd seen.</p>
+</div>
+<div class="timeline-item">
+<h4>DCR v2 + Multi-Provider</h4>
+<div class="meta">January 2026</div>
+<p>Added LLM-powered analysis. Claude, GPT-4o, Gemini support with auto-detection and graceful fallback. The quality jump was massive.</p>
+</div>
+<div class="timeline-item">
+<h4>Context Health Engine</h4>
+<div class="meta">February 2026</div>
+<p>Built the data quality auditing system. This became the "wow" feature — show someone their data costs $9K/year and they listen.</p>
+</div>
+<div class="timeline-item">
+<h4>Memory Graph</h4>
+<div class="meta">February 2026</div>
+<p>Added persistent memory with Supabase. Temporal decay curves for different signal types. The system now learns from every conversation.</p>
+</div>
+<div class="timeline-item">
+<h4>Production Scale</h4>
+<div class="meta">February 2026</div>
+<p>Multi-tenant architecture, 250K candidate scale testing, Railway deployment, remote MCP access. From prototype to production-ready MCPaaS.</p>
+</div>
+</div>
+</div>
+
+<div class="section">
+<span class="section-label">// What's Next</span>
+<h2>Roadmap to Production</h2>
+<div class="roadmap-grid">
+<div class="roadmap-card current">
+<h4>Now: Deployed MCPaaS</h4>
+<ul>
+<li>Production-ready on Railway</li>
+<li>Remote MCP access via npx</li>
+<li>Multi-tenant Postgres</li>
+<li>250K candidate scale</li>
+<li>9 tools, DCR v2, memory graph</li>
+</ul>
+</div>
+<div class="roadmap-card">
+<h4>Next: Live ATS Integration</h4>
+<ul>
+<li>Connect to real Bullhorn instance</li>
+<li>Merge.dev field mapping complete</li>
+<li>Real recruiter beta testing</li>
+<li>Webhook-based sync</li>
+<li>Activity write-back</li>
+</ul>
+</div>
+<div class="roadmap-card">
+<h4>Future: Autonomous Actions</h4>
+<ul>
+<li>Email drafting grounded in DCR</li>
+<li>Reply parsing and signal extraction</li>
+<li>ATS record updates</li>
+<li>Approval gates for autonomy control</li>
+<li>Full agentic loop</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div id="try-it" class="try-section">
+<h2>Try PAINT Live</h2>
+<p>PAINT is deployed and running. You can connect it to Claude Desktop right now and see it work against a 250K candidate mock database.</p>
+<div class="hero-actions" style="margin-bottom:2rem">
+<a href="claude_desktop_config.json" download class="btn btn-primary">Download Config →</a>
+<a href="https://github.com/pranavgandhirecruiting-star/paint-ats-mcp" target="_blank" class="btn btn-outline">View Source</a>
+</div>
+<div class="download-instructions">
+<h4>Setup Instructions</h4>
+<ol>
+<li><strong>Download the config file</strong> using the button above</li>
+<li><strong>Locate your Claude Desktop config:</strong>
+<br>• Mac: <code>~/Library/Application Support/Claude/claude_desktop_config.json</code>
+<br>• Windows: <code>%APPDATA%\Claude\claude_desktop_config.json</code></li>
+<li><strong>Replace the contents</strong> of your existing config with the downloaded file (or merge the <code>mcpServers</code> section if you have other MCP servers)</li>
+<li><strong>Restart Claude Desktop</strong></li>
+<li><strong>Look for the 🔧 icon</strong> in the input box — click it to see PAINT's tools</li>
+<li><strong>Try it:</strong> Ask Claude <em>"Search for React developers in Austin"</em> or <em>"Audit the data health of this ATS"</em></li>
+</ol>
+<p style="margin-top:1rem;margin-bottom:0;font-size:0.85rem;color:var(--text-muted)">The server runs on Railway and connects through <code>mcp-remote</code>. No API keys needed — just install and go.</p>
+</div>
+</div>
+
+<div class="section" style="text-align:center">
+<span class="section-label">// Built By</span>
+<h2>Pranav Gandhi</h2>
+<p>10+ years in technical recruiting. Former Meta, Citrix, Cisco. <br>Now building the future of AI-native talent intelligence.</p>
+<div class="hero-actions">
+<a href="/cdn-cgi/l/email-protection#5a2a283b343b2c3d3b343e323374283f39282f332e33343d1a3d373b333674393537" class="btn btn-primary">Get in Touch</a>
+<a href="index.html" class="btn btn-outline">← Back to Portfolio</a>
+</div>
+</div>
+</div>
+
+<footer>
+© 2026 Pranav Gandhi · <a href="index.html">Portfolio</a> · <a href="https://github.com/pranavgandhirecruiting-star/paint-ats-mcp" target="_blank">GitHub</a> · <a href="/cdn-cgi/l/email-protect

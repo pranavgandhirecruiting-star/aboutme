@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "paint-cloud": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://positive-curiosity-production.up.railway.app/sse"
+      ]
+    }
+  },
+  "preferences": {
+    "coworkScheduledTasksEnabled": false,
+    "sidebarMode": "chat"
+  }
+}
